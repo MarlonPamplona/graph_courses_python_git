@@ -1,0 +1,57 @@
+---
+title: "India TB Pathways Analysis"
+format: 
+    html:
+        embed-resources: true
+execute: 
+  echo: false
+author: "MARLON PIUS PAMPLONA"
+---
+
+
+```{python}
+import pandas as pd
+import plotly.express as px
+from itables import show
+```
+
+### Description
+*The India TB Pathways dataset is based on a study conducted in Vellore district, Tamil Nadu, India. It
+examines the pre-diagnostic costs and health-seeking behavior of 880 new adult pulmonary tuberculosis
+patients registered at Primary Health Centres (PHCs).*
+
+```{python}
+data = pd.read_csv("data/india_tb_pathways_and_costs.csv")
+
+show(data)
+```
+
+### Map of Tamil Nadu
+*Tamil Nadu consists of 38 districts, each with distinct cultural, economic, and geographical significance. Chennai, the capital, is a major metropolitan and IT hub, while Coimbatore is known for textiles and industry. Madurai and Thanjavur are famous for ancient temples and cultural heritage. Tiruchirappalli (Trichy) is a key educational and industrial center, and Salem is known for steel production. Erode and Tiruppur lead in textiles, while **Vellore** is home to a historic fort and top medical institutions. The Nilgiris offer hill stations like Ooty, and Kanyakumari, at India’s southern tip, is known for its scenic coast. Agricultural districts like Thiruvarur, Nagapattinam, and Villupuram thrive on river-fed farming, while coastal districts such as Thoothukudi and Ramanathapuram support fisheries and trade.(Created using LLM)*
+
+![Map of Tamil Nadu. Vellore district is in the north-east.](image/tndistrict_1.png)
+
+### Smoking Status per Sex
+
+```{python}
+
+smoke_sex = px.histogram(data, x = "Sex", color = "Smoking",
+barmode = "group", text_auto = True)
+
+smoke_sex.write_image('image/smoke_sex.png')
+
+```
+
+![Smoking Status per Sex Plot](image/smoke_sex.png)
+
+*The plot shows the distribution of Smoking Status per Sex. This clearly shows that more of the Male Sex are smokers making them more at risk of complications of TB than Females*
+
+### Some Demographic Description
+
+```{python}
+median_age = int(data.Age.mean())
+mean_wt = int(data.WtinKgs.mean())
+mean_ht = int(data.HtinCms.mean())
+mean_bmi = int(data.bmi.mean())
+```
+The median age of the study population is **`{python} median_age`**. The average height of the study population is **`{python} mean_wt`** kgs and the average weight is **`{python} mean_ht`** cm while the average bmi is **`{python} mean_bmi`**

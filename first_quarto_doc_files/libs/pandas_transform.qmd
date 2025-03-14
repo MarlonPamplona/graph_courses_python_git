@@ -1,0 +1,173 @@
+## Imports
+
+```{python}
+import pandas as pd
+pd.options.mode.copy_on_write = True
+```
+
+
+```{python}
+# Import the data
+
+counties = pd.read_csv("../data/us_counties_data.csv")
+
+counties
+```
+
+
+```{python}
+# Small subset
+area_df = counties [["county","area_sq_miles","pop_20"]]
+
+area_df
+```
+
+## Creating New Variables
+
+```{python}
+# New variable area_sq_km (multiple area_sq_miles bu 2.59)
+
+area_df["area_sq_km"] = area_df["area_sq_miles"] * 2.59
+
+area_df
+```
+
+
+```{python}
+# New varialble area_hectares (area_sq_miles * 259)
+area_df["area_hectares"] = area_df["area_sq_miles"] * 259
+
+area_df
+
+```
+
+## Practice: Create a new column called area_acres by multiplying area_sq_miles by 640. Store the result back into area_df.
+
+
+```{python}
+area_df["area_acres"] = area_df["area_sq_miles"] * 640
+
+area_df
+```
+
+## Modifying Existing Variables
+
+
+```{python}
+# Round the area_sq_km to one decimal place
+area_df["area_sq_km"] = area_df["area_sq_km"].round(1)
+
+area_df
+```
+
+## Practice Q: round the area_acres to one decimal place
+
+
+```{python}
+area_df["area_acres"] = area_df["area_acres"].round(1)
+
+area_df
+```
+
+## Calculations with Multiple Variables
+
+
+```{python}
+## population density per square kilometer
+
+area_df["pop_per_sq_km"] = area_df["pop_20"] / area_df["area_sq_km"]
+
+## round the new variable to one decimal place
+area_df["pop_per_sq_km"] = (area_df["pop_20"] / area_df["area_sq_km"]).round(1)
+
+area_df
+```
+
+
+```{python}
+# Sort by population density in descending order
+area_df = area_df.sort_values("pop_per_sq_km", ascending = False)
+
+area_df
+```
+
+## Practice Q: Calculate Foreign-Born Percentage : Use the counties dataset to calculate the percentage of foreign-born residents in each county. The variable foreign_born_num shows the number of foreign-born residents and pop_20 shows the total population. Sort the DataFrame in descending order of the percentage of foreign-born residents. Which two counties have the highest percentage of foreign-born residents?
+
+## Answer : Miami-Dade, FL, Queens, NY
+
+
+```{python}
+# Create a new variable called foreign_born_percent
+counties["foreign_born_percent"] = (counties["foreign_born_num"] / counties["pop_20"]) * 100
+
+counties["foreign_born_percnet"] = counties["foreign_born_percent"].round(1)
+
+counties = counties.sort_values("foreign_born_percent", ascending = False)
+
+counties
+```
+
+## Creating Boolean Variables
+
+
+```{python}
+#Subset the data
+
+changes_df = counties[["county", "pop_change_2010_2020", "pct_emp_change_2010_2021"]]
+changes_df
+```
+
+
+```{python}
+# Run the expression
+changes_df["pop_change_2010_2020"] > 0
+```
+
+```{python}
+# Assign the the Series of Boolean values to the pop_increase variable
+
+changes_df["pop_increase"] = changes_df["pop_change_2010_2020"] > 0
+changes_df
+```
+
+
+```{python}
+# create emp_increase for employment change
+
+changes_df["emp_increase"] = changes_df["pct_emp_change_2010_2021"] > 0
+changes_df
+```
+
+
+```{python}
+# We can now filter the DataFrame to find counties where the population increased but employment decreased.
+
+pop_up_emp_down = changes_df.query("pop_increase == True & emp_increase == False")
+pop_up_emp_down
+```
+
+
+```{python}
+# Shorthand
+pop_up_emp_down = changes_df.query("pop_increase & ~(emp_increase)")
+pop_up_emp_down
+
+```
+
+# Practice Q: Categorize Counties by Foreign-Born Population: In a previous practice question, we calculated the percentage of foreign-born residents in each county. Now, create a Boolean variable foreign_born_pct_gt_30 that is True if the percentage is greater than 30%. When you’re done, query the DataFrame to show only counties where foreign_born_pct_gt_30 is True. You should get 24 rows.
+
+
+```{python}
+# Create the boolean variable
+counties["foreign_born_pct_gt_30"] = counties["foreign_born_percent"] > 30
+
+
+
+```
+```{python}
+# query the counties where foreign_born_percent is True
+
+foreign_born_pct_30 = counties.query("foreign_born_pct_gt_30== True")
+
+foreign_born_pct_30
+```
