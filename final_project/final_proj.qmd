@@ -1,0 +1,921 @@
+---
+title: "GAPMINDER | Child Mortality and Life Expectancy | ASEAN in the 21st Century"
+author: "by Marlon Pius Pamplona" 
+format: 
+  dashboard:
+    theme: "darkly"
+echo: false
+---
+```{python}
+# Load libraries
+import pandas as pd
+import numpy as np
+import country_converter as coco
+import plotly.express as px
+import pycountry
+import plotly.graph_objects as go
+import itables
+
+```
+
+```{python}
+# Load raw data from specified paths
+global_m = pd.read_csv("data/child_mortality.csv")
+global_le = pd.read_csv("data/life_expectancy.csv")
+global_pop = pd.read_csv("data/pop.csv")
+```
+
+
+```{python}
+# Transforming datasets and merging
+
+# define southeast asian countries in a list
+southeast_asia = [
+    "Brunei", "Cambodia", "Indonesia", "Lao", "Malaysia", 
+    "Myanmar", "Philippines", "Singapore", "Thailand", "Timor-Leste", "Vietnam"]
+
+# convert wide to long
+le_21st = global_le.melt(id_vars=["country"], var_name="year", value_name="life_expectancy")
+
+# filter life expectancy to 21st century
+le_21st["year"] = pd.to_numeric(le_21st["year"], errors="coerce")
+
+# filter asean countries 
+asean_le = le_21st[
+    (le_21st["country"].isin(southeast_asia)) & (le_21st["year"].between(2001, 2024))]
+
+# convert wide to long
+m_21st = global_m.melt(id_vars=["country"], var_name="year", value_name="child_mortality")
+
+# filter mortality data to 21st century
+m_21st["year"] = pd.to_numeric(m_21st["year"], errors="coerce")
+
+# filter asean countries and year
+asean_m = m_21st[
+    (m_21st["country"].isin(southeast_asia)) & (m_21st["year"].between(2001, 2024))]
+
+# convert wide to long
+pop_21st = global_pop.melt(id_vars=["country"], var_name="year",
+value_name="population")
+
+# filter population data to 21st century
+pop_21st["year"] = pd.to_numeric(pop_21st["year"], errors="coerce")
+
+# filter asean countries
+asean_pop = pop_21st[
+    (pop_21st["country"].isin(southeast_asia)) & (pop_21st["year"].between(2001, 2024))]
+
+# Merge all data frame and add ISO codes
+merged_all = asean_m.merge(asean_le, on=["country", "year"]).merge(asean_pop, on=["country", "year"])
+
+
+```
+
+```{python}
+# Transforming the merged dataset
+# Manual corrections for country names not recognized by pycountry
+country_corrections = {
+    "Vietnam": "VNM",
+    "Lao": "LAO",
+    "Brunei": "BRN"
+}
+
+def get_iso3(country):
+    try:
+        return pycountry.countries.lookup(country).alpha_3
+    except LookupError:
+        return country_corrections.get(country, None)  # Fallback for manual corrections
+
+# Apply function to add ISO-3 codes
+merged_all["iso_alpha"] = merged_all["country"].apply(get_iso3)
+
+# Converting population data to integers
+# Function to convert population strings to integers
+def convert_population(population):
+    if 'k' in population:
+        return int(float(population.replace('k', '')) * 1000)
+    elif 'M' in population:
+        return int(float(population.replace('M', '')) * 1000000)
+    else:
+        return int(population)  # In case of no K or M
+
+# Apply function to the 'population' column
+merged_all['population'] = merged_all['population'].apply(convert_population)
+
+# Convert other variables to numeric
+merged_all[['child_mortality', 'life_expectancy']] = merged_all[['child_mortality', 'life_expectancy']].apply(pd.to_numeric, errors='coerce')
+```
+
+```{python}
+# Map of ASEAN (child mortality)
+# Get min/max values to set color scale range
+min_val = merged_all["child_mortality"].min()
+max_val = merged_all["child_mortality"].max()
+
+# Create the choropleth map for ASEAN countries only
+mortality_map = px.choropleth(
+    merged_all,
+    locations="iso_alpha",
+    color="child_mortality",
+    hover_name="country",
+    hover_data={"year": True, "child_mortality": True},
+    animation_frame="year",  # Keep the animation frame for slider
+    color_continuous_scale="YlOrRd",
+    locationmode="ISO-3",
+    range_color=[min_val, max_val],
+    title="21st Century Child Mortality in ASEAN region ",
+    color_continuous_midpoint=merged_all["child_mortality"].median(),  # Midpoint for better contrast
+)
+
+mortality_map = mortality_map.update_layout(
+    coloraxis_colorbar=dict(
+        title="Child Mortality",
+        tickvals=[10, 25, 50, 75, 100],
+        tickformat=".2f"
+    )
+)
+
+# Improve visibility of ASEAN borders and zoom in
+mortality_map = mortality_map.update_geos(
+    visible=True,
+    projection_type="mercator",
+    showland=True,  
+    landcolor="lightgray",  
+    showframe=False,  
+    showcountries=True,  
+    countrycolor="black",   
+    lonaxis=dict(range=[90, 160]), 
+    lataxis=dict(range=[-10, 30])   
+)
+
+# Dark aesthetics with superhero-like theme
+mortality_map = mortality_map.update_layout(
+    width=700,
+    height=500,  
+    margin=dict(l=0, r=0, t=40, b=0),
+    geo=dict(
+        showframe=False,
+        showcoastlines=False,
+        projection_type='natural earth'
+    ),
+    paper_bgcolor="#0f0f0f",  
+    plot_bgcolor="#0f0f0f",
+    font=dict(color="white"),  
+    title_font=dict(size=20, color="white", family="Arial"),
+    legend=dict(
+        font=dict(color="white"),
+        bgcolor="rgba(0,0,0,0)"
+    ),
+    xaxis=dict(
+        color="white",  
+        gridcolor="#333333",  
+        zerolinecolor="#444444"
+    ),
+    yaxis=dict(
+        color="white",
+        gridcolor="#333333",
+        zerolinecolor="#444444"
+    )
+)
+
+# Disable autoplay and only show manual toggle
+mortality_map = mortality_map.update_layout(
+    updatemenus=[],  # Remove autoplay-related menus
+    sliders=[{
+        "active": 0,
+        "transition": {"duration": 0},  # Disable animation on slider change
+        "x": 0.1,
+        "len": 0.9,
+        "pad": {"b": 10},
+        "currentvalue": {
+            "visible": True,
+            "prefix": "Year: ",
+            "xanchor": "right",
+            "font": {"color": "white", "size": 16}
+        },
+        "steps": [
+            {
+                "args": [
+                    [year], 
+                    {
+                        "frame": {"duration": 0, "redraw": True}, 
+                        "mode": "immediate"
+                    }
+                ],
+                "label": str(year),
+                "method": "animate",
+            } for year in sorted(merged_all["year"].unique())
+        ]
+    }]
+)
+
+# Save the map as HTML
+mortality_map.write_html("mortality_map.html", full_html=True, auto_play=False)
+
+```
+
+```{python}
+# Bar chart of Child Mortality
+mortality_bar = px.bar(
+    merged_all,
+    x="child_mortality",
+    y="country",
+    color="country",
+    orientation="h",
+    animation_frame="year",
+    text="child_mortality",
+    title="ASEAN Child Mortality in the 21st Century"
+)
+
+# Convert to full go.Figure to control each frame
+mortality_bar = go.Figure(mortality_bar)
+
+# Loop through each frame and force textposition outside of bars
+for frame in mortality_bar.frames:
+    for d in frame.data:
+        d.textposition = "outside"
+        d.texttemplate = "%{text:.2f}"
+
+# Update initial traces
+mortality_bar = mortality_bar.update_traces(textposition="outside", texttemplate="%{text:.2f}")
+
+# Lock country positions
+country_order = merged_all["country"].unique()[::-1]
+
+# Update axis label
+mortality_bar = mortality_bar.update_layout(
+    yaxis=dict(
+        categoryorder="array",
+        categoryarray=country_order
+    ),
+    xaxis=dict(range=[0, merged_all["child_mortality"].max() * 1.2]),
+    showlegend=False,
+    xaxis_title="Child Mortality Rate",
+    yaxis_title="Country"
+)
+
+# Dark aesthetics with superhero like theme
+mortality_bar = mortality_bar.update_layout(
+    paper_bgcolor="#0f0f0f",  
+    plot_bgcolor="#0f0f0f",
+    font=dict(color="white"),  
+    title_font=dict(size=20, color="white", family="Arial"),
+    legend=dict(
+        font=dict(color="white"),
+        bgcolor="rgba(0,0,0,0)"
+    ),
+    xaxis=dict(
+        color="white",  
+        gridcolor="#333333",  
+        zerolinecolor="#444444"
+    ),
+    yaxis=dict(
+        color="white",
+        gridcolor="#333333",
+        zerolinecolor="#444444"
+    )
+)
+
+mortality_bar.write_html("mortality_bar.html",full_html=True, auto_play=False)
+```
+
+```{python}
+# Line chart of Child Mortality
+# Create a line chart
+mortality_line = px.line(
+    merged_all,
+    x="year",  
+    y="child_mortality",  
+    color="country", 
+    title="Child Mortality Trend Over Time",
+)
+
+# Add a dropdown menu to select countries with a label
+mortality_line = mortality_line.update_layout(
+    updatemenus=[
+        {
+            "buttons": [
+                {
+                    "label": "Select Country",  
+                    "method": "update",
+                    "args": [{"visible": [False] * len(merged_all["country"].unique())}, {"title": "Select a country to view the trend"}]
+                },
+                {
+                    "label": "All Countries",
+                    "method": "update",
+                    "args": [{"visible": [True] * len(merged_all["country"].unique())}, {"title": "Child Mortality Trend Over Time"}]
+                },
+                *[
+                    {
+                        "label": country,
+                        "method": "update",
+                        "args": [{"visible": [country == c for c in merged_all["country"].unique()]}, {"title": f"Child Mortality Trend - {country}"}]
+                    }
+                    for country in merged_all["country"].unique()
+                ]
+            ],
+            "direction": "down",  
+            "showactive": True,
+        }
+    ],
+)
+
+# Customize axis titles and layout
+mortality_line = mortality_line.update_layout(
+    xaxis_title="Year",
+    yaxis_title="Child Mortality",
+)
+
+
+# Dark aesthetics with superhero like theme
+mortality_line = mortality_line.update_layout(
+    paper_bgcolor="#0f0f0f",  
+    plot_bgcolor="#0f0f0f",
+    font=dict(color="white"),  
+    title_font=dict(size=20, color="white", family="Arial"),
+    legend=dict(
+        font=dict(color="white"),
+        bgcolor="rgba(0,0,0,0)",
+        visible=False
+    ),
+    xaxis=dict(
+        color="white",  
+        gridcolor="#333333",  
+        zerolinecolor="#444444"
+    ),
+    yaxis=dict(
+        color="white",
+        gridcolor="#333333",
+        zerolinecolor="#444444"
+    )
+)
+
+mortality_line.write_html("mortality_line.html", full_html=True, auto_play=False)
+```
+
+```{python}
+# bubble chart (child mortality x life expectancy)
+mortality_bubble = px.scatter(
+    merged_all,
+    x="child_mortality",  # X-axis variable
+    y="life_expectancy",   # Y-axis variable
+    size="population",    # Bubble size
+    color="country",      # Color by country
+    hover_name="country", # Show country name on hover
+    size_max=30,          # Max bubble size
+    animation_frame="year",  # Animate over time
+    title="Child Mortality vs. Life Expectancy",
+    text="country"  # Label bubbles with country names
+)
+
+# Remove legend
+mortality_bubble = mortality_bubble.update_layout(showlegend=False)
+
+# Adjust text position and appearance
+mortality_bubble = mortality_bubble.update_traces(textposition="top center", textfont_size=12)
+
+mortality_bubble = mortality_bubble.update_layout(
+    width=650,
+    height=450,
+    margin=dict(l=0, r=0, t=40, b=0),
+    yaxis=dict(
+        range=[merged_all["life_expectancy"].min() - 10, merged_all["life_expectancy"].max() + 10]  
+    ),
+    xaxis_title="Child Mortality Rate",
+    yaxis_title="Life Expectancy"
+)
+
+# Dark aesthetics with superhero like theme
+mortality_bubble = mortality_bubble.update_layout(
+    paper_bgcolor="#0f0f0f",  
+    plot_bgcolor="#0f0f0f",
+    font=dict(color="white"),  
+    title_font=dict(size=20, color="white", family="Arial"),
+    legend=dict(
+        font=dict(color="white"),
+        bgcolor="rgba(0,0,0,0)"
+    ),
+    xaxis=dict(
+        color="white",  
+        gridcolor="#333333",  
+        zerolinecolor="#444444"
+    ),
+    yaxis=dict(
+        color="white",
+        gridcolor="#333333",
+        zerolinecolor="#444444"
+    )
+)
+
+mortality_bubble.write_html("mortality_bubble.html", full_html=True, auto_play=False)
+```
+
+
+```{python}
+# Map of ASEAN (life expectancy)
+# Get min/max values to set color scale range
+min_val = merged_all["life_expectancy"].min()
+max_val = merged_all["life_expectancy"].max()
+
+# Create the choropleth map for ASEAN countries only
+expectancy_map = px.choropleth(
+    merged_all,
+    locations="iso_alpha",
+    color="life_expectancy",
+    hover_name="country",
+    hover_data={"year": True, "life_expectancy": True},
+    animation_frame="year",  # Keep the animation frame for slider
+    color_continuous_scale="YlOrRd",
+    locationmode="ISO-3",
+    range_color=[min_val, max_val],
+    title="21st Century Life Expectancy in ASEAN region",
+    color_continuous_midpoint=merged_all["life_expectancy"].median(),  # Midpoint for better contrast
+)
+
+expectancy_map = expectancy_map.update_layout(
+    coloraxis_colorbar=dict(
+        title="Life Expectancy",
+        tickvals=[60, 70, 80],  
+        tickformat=".2f"
+    )
+)
+
+# Improve visibility of ASEAN borders and zoom in
+expectancy_map = expectancy_map.update_geos(
+    visible=True,
+    projection_type="mercator",
+    showland=True,  
+    landcolor="lightgray",  
+    showframe=False,  
+    showcountries=True,  
+    countrycolor="black",  
+    lonaxis=dict(range=[90, 160]),  
+    lataxis=dict(range=[-10, 30])   
+)
+
+# Dark aesthetics with superhero-like theme
+expectancy_map = expectancy_map.update_layout(
+    width=700,
+    height=500,
+    margin=dict(l=0, r=0, t=40, b=0),
+    geo=dict(
+        showframe=False,
+        showcoastlines=False,
+        projection_type='natural earth'
+    ),
+    paper_bgcolor="#0f0f0f",  
+    plot_bgcolor="#0f0f0f",
+    font=dict(color="white"),  
+    title_font=dict(size=20, color="white", family="Arial"),
+    legend=dict(
+        font=dict(color="white"),
+        bgcolor="rgba(0,0,0,0)"
+    ),
+    xaxis=dict(
+        color="white",  
+        gridcolor="#333333",  
+        zerolinecolor="#444444"
+    ),
+    yaxis=dict(
+        color="white",
+        gridcolor="#333333",
+        zerolinecolor="#444444"
+    )
+)
+
+# Disable autoplay and only show the manual slider
+expectancy_map = expectancy_map.update_layout(
+    updatemenus=[],  # Remove autoplay-related menus
+    sliders=[{
+        "active": 0,
+        "transition": {"duration": 0},  # Disable animation on slider change
+        "x": 0.1,
+        "len": 0.9,
+        "pad": {"b": 10},
+        "currentvalue": {
+            "visible": True,
+            "prefix": "Year: ",
+            "xanchor": "right",
+            "font": {"color": "white", "size": 16}
+        },
+        "steps": [
+            {
+                "args": [
+                    [year], 
+                    {
+                        "frame": {"duration": 0, "redraw": True}, 
+                        "mode": "immediate"
+                    }
+                ],
+                "label": str(year),
+                "method": "animate",
+            } for year in sorted(merged_all["year"].unique())
+        ]
+    }]
+)
+
+# Save the map as HTML
+expectancy_map.write_html("expectancy_map.html", full_html=True, auto_play=False)
+
+```
+
+```{python}
+# Bar chart of Life Expectancy
+expectancy_bar = px.bar(
+    merged_all,
+    x="life_expectancy",
+    y="country",
+    color="country",
+    orientation="h",
+    animation_frame="year",
+    text="life_expectancy",
+    title="ASEAN Life Expectancy in the 21st Century"
+)
+
+# Convert to full go.Figure to control each frame
+expectancy_bar = go.Figure(expectancy_bar)
+
+# Loop through each frame and force textposition outside of bars
+for frame in expectancy_bar.frames:
+    for d in frame.data:
+        d.textposition = "outside"
+        d.texttemplate = "%{text:.2f}"
+
+# Update the initial traces
+expectancy_bar = expectancy_bar.update_traces(textposition="outside", texttemplate="%{text:.2f}")
+
+# Lock country positions
+country_order = merged_all["country"].unique()[::-1]
+
+# Update axis
+expectancy_bar = expectancy_bar.update_layout(
+    yaxis=dict(
+        categoryorder="array",
+        categoryarray=country_order
+    ),
+    xaxis=dict(
+    range=[55, 95],             
+    tickmode="linear",         
+    tick0=55,                   
+    dtick=5                   
+),
+    showlegend=False,
+    xaxis_title="Life Expectancy",
+    yaxis_title="Country"
+)
+
+# Dark aesthetics with superhero like theme
+expectancy_bar = expectancy_bar.update_layout(
+    paper_bgcolor="#0f0f0f",  
+    plot_bgcolor="#0f0f0f",
+    font=dict(color="white"),  
+    title_font=dict(size=20, color="white", family="Arial"),
+    legend=dict(
+        font=dict(color="white"),
+        bgcolor="rgba(0,0,0,0)"
+    ),
+    xaxis=dict(
+        color="white",  
+        gridcolor="#333333",  
+        zerolinecolor="#444444"
+    ),
+    yaxis=dict(
+        color="white",
+        gridcolor="#333333",
+        zerolinecolor="#444444"
+    )
+)
+
+expectancy_bar.write_html("expectancy_bar.html", full_html=True, auto_play=False)
+ 
+```
+
+
+```{python}
+# Line chart of Life Expectancy
+# Create a line chart
+expectancy_line = px.line(
+    merged_all,
+    x="year",  
+    y="life_expectancy", 
+    color="country",  
+    title="Life Expectancy Trend Over Time",
+)
+
+# Add a dropdown menu to select countries with a label
+expectancy_line = expectancy_line.update_layout(
+    updatemenus=[
+        {
+            "buttons": [
+                {
+                    "label": "Select Country",  
+                    "method": "update",
+                    "args": [{"visible": [False] * len(merged_all["country"].unique())}, {"title": "Select a country to view the trend"}]
+                },
+                {
+                    "label": "All Countries",
+                    "method": "update",
+                    "args": [{"visible": [True] * len(merged_all["country"].unique())}, {"title": "Life Expectancy Trend Over Time"}]
+                },
+                *[
+                    {
+                        "label": country,
+                        "method": "update",
+                        "args": [{"visible": [country == c for c in merged_all["country"].unique()]}, {"title": f"Life Expectancy Trend - {country}"}]
+                    }
+                    for country in merged_all["country"].unique()
+                ]
+            ],
+            "direction": "down",  
+            "showactive": True,
+        }
+    ],
+)
+
+# Customize axis titles and layout
+expectancy_line = expectancy_line.update_layout(
+    xaxis_title="Year",
+    yaxis_title="Life Expectancy",
+)
+# Dark aesthetics with superhero like theme
+expectancy_line = expectancy_line.update_layout(
+    paper_bgcolor="#0f0f0f",  
+    plot_bgcolor="#0f0f0f",
+    font=dict(color="white"),  
+    title_font=dict(size=20, color="white", family="Arial"),
+    legend=dict(
+        font=dict(color="white"),
+        bgcolor="rgba(0,0,0,0)",
+        visible=False
+    ),
+    xaxis=dict(
+        color="white",  
+        gridcolor="#333333",  
+        zerolinecolor="#444444"
+    ),
+    yaxis=dict(
+        color="white",
+        gridcolor="#333333",
+        zerolinecolor="#444444"
+    )
+)
+expectancy_line.write_html("expectancy_line.html", full_html=True, auto_play=False)
+```
+
+```{python}
+# bubble chart (life expectancy x child mortality)
+
+expectancy_bubble = px.scatter(
+    merged_all,
+    x="life_expectancy",  # X-axis variable
+    y="child_mortality",   # Y-axis variable
+    size="population",    # Bubble size
+    color="country",      # Color by country
+    hover_name="country", # Show country name on hover
+    size_max=50,          # Max bubble size
+    animation_frame="year",  # Animate over time
+    title="Life Expectancy vs. Child Mortality",
+    text="country"  # Label bubbles with country names
+)
+
+# Remove legend
+expectancy_bubble = expectancy_bubble.update_layout(showlegend=False)
+
+# Adjust text position and appearance
+expectancy_bubble = expectancy_bubble.update_traces(textposition="top center", textfont_size=12)
+
+expectancy_bubble = expectancy_bubble.update_layout(
+    width=650,
+    height=450,
+    margin=dict(l=0, r=0, t=40, b=0),
+    xaxis=dict(
+        range=[merged_all["life_expectancy"].min() - 10, merged_all["life_expectancy"].max() + 10]  
+    ),
+    xaxis_title="Life Expectancy",
+    yaxis_title="Child Mortality"
+)
+
+# Dark aesthetics with superhero like theme
+expectancy_bubble = expectancy_bubble.update_layout(
+    paper_bgcolor="#0f0f0f",  
+    plot_bgcolor="#0f0f0f",
+    font=dict(color="white"),  
+    title_font=dict(size=20, color="white", family="Arial"),
+    legend=dict(
+        font=dict(color="white"),
+        bgcolor="rgba(0,0,0,0)"
+    ),
+    xaxis=dict(
+        color="white",  
+        gridcolor="#333333",  
+        zerolinecolor="#444444"
+    ),
+    yaxis=dict(
+        color="white",
+        gridcolor="#333333",
+        zerolinecolor="#444444"
+    )
+)
+
+expectancy_bubble.write_html("expectancy_bubble.html", full_html=True, auto_play=False)
+```
+
+```{python}
+# Compute highest life expectancy
+highest_le_2001 = asean_le[asean_le["year"] == 2001].sort_values("life_expectancy", ascending=False).head(1).squeeze()
+max_le_2001 = highest_le_2001["country"]
+
+
+highest_le_2024 = asean_le[asean_le["year"] == 2024].sort_values("life_expectancy", ascending=False).head(1).squeeze()
+max_le_2024 = highest_le_2024["country"]
+
+# Compute lowest life expectancy
+lowest_le_2001 = asean_le[asean_le["year"] == 2001].sort_values("life_expectancy", ascending=True).head(1).squeeze()
+min_le_2001 = lowest_le_2001["country"]
+
+lowest_le_2024 = asean_le[asean_le["year"] == 2024].sort_values("life_expectancy", ascending=True).head(1).squeeze()
+min_le_2024 = lowest_le_2024["country"]
+
+# Compute highest child mortality
+highest_m_2001 = asean_m[asean_m["year"] == 2001].sort_values("child_mortality", ascending=False).head(1).squeeze()
+max_m_2001 = highest_m_2001["country"]
+
+
+highest_m_2024 = asean_m[asean_m["year"] == 2024].sort_values("child_mortality", ascending=False).head(1).squeeze()
+max_m_2024 = highest_m_2024["country"]
+
+# Compute lowest life expectancy
+lowest_m_2001 = asean_m[asean_m["year"] == 2001].sort_values("child_mortality", ascending=True).head(1).squeeze()
+min_m_2001 = lowest_m_2001["country"]
+
+lowest_m_2024 = asean_m[asean_m["year"] == 2024].sort_values("child_mortality", ascending=True).head(1).squeeze()
+min_m_2024 = lowest_m_2024["country"]
+
+```
+
+
+# Home
+
+## Row 
+
+### Column {width="50%"}
+
+Child mortality refers to the number of deaths of children under the age of five per 1,000 live births in a given year. It is a critical indicator of a population’s health and the effectiveness of health systems, nutrition, sanitation, and access to medical care. 
+
+Life expectancy, on the other hand, represents the average number of years a person is expected to live based on current mortality rates. Together, these two indicators offer important insights into the overall well-being and development progress of a region or country. 
+
+
+The ASEAN (Association of Southeast Asian Nations) region consists of ten member states in Southeast Asia—Brunei, Cambodia, Indonesia, Laos, Malaysia, Myanmar, the Philippines, Singapore, Thailand, and Vietnam—each with diverse economic, social, and healthcare systems.
+ 
+ABOUT THE DATA
+
+This data was originally sourced from the Gapminder Foundation.
+
+The Gapminder Foundation is a non-profit venture that promotes sustainable global development and achievement of the United Nations Millennium Development Goals by increasing use and understanding of statistics and other information about social, economic, and environmental development.
+
+### Column {width="50%"}
+
+
+<div>
+  <iframe id="mortality-bubble" src="mortality_bubble.html" width="100%" height="600px" frameborder="0"></iframe>
+</div>
+
+From 2001 to 2024, the ASEAN region has seen a steady decline in child mortality rates and a significant improvement in life expectancy. These trends reflect advancements in maternal and child health services, expanded immunization programs, improved sanitation and water access, and greater investment in public health infrastructure.
+
+
+# Child Mortality
+
+## Row 1 {height=20%}
+
+::: {.valuebox icon="emoji-dizzy" color="#FF0000" title="Highest Child Mortality(2001)" style="width: 220px; height: 90px; font-size: 0.9em;"}
+
+`{python} max_m_2001`
+
+:::
+
+::: {.valuebox icon="emoji-dizzy" color="#1E90FF" title="Lowest Child Mortality(2001)" style="width: 220px; height: 90px; font-size: 0.75em;"}
+
+`{python} min_m_2001`
+
+:::
+
+::: {.valuebox icon="emoji-dizzy" color="#FF0000" title="Highest Child Mortality(2024)" style="width: 220px; height: 90px; font-size: 0.75em;"}
+
+`{python} max_m_2024`
+
+:::
+
+::: {.valuebox icon="emoji-dizzy" color="#1E90FF" title="Lowest Child Mortality(2024)" style="width: 220px; height: 90px; font-size: 0.75em;"}
+
+`{python} min_m_2024`
+
+:::
+
+## Row 2 {height=80%}
+
+### Column {.tabset width="20%"}
+
+#### Map
+
+<div>
+  <iframe id="mortality-map" src="mortality_map.html" width="100%" height="600px" frameborder="0"></iframe>
+</div>
+
+### Column {.tabset width="20%"}
+
+#### Country Comparison
+<div>
+  <iframe id="mortality-bar" src="mortality_bar.html" width="100%" height="600px" frameborder="0"></iframe>
+</div>
+
+#### Country Trend
+
+<div>
+  <iframe id="mortality-line" src="mortality_line.html" width="100%" height="600px" frameborder="0"></iframe>
+</div>
+
+#### Data Download
+
+```{python}
+# Display full dataset with itables
+itables.show(asean_m, caption="ASEAN 21st Century Mortality (GAPMINDER)", buttons=["csvHtml5"])
+```
+
+# Life Expectancy
+
+## Row 1 {height=20%}
+
+::: {.valuebox icon="heart" color="#1E90FF" title="Highest Life Expectancy(2001)" style="width: 220px; height: 90px; font-size: 0.9em;"}
+
+`{python} max_le_2001`
+
+:::
+
+::: {.valuebox icon="heart" color="#FF0000" title="Lowest Life Expectancy(2001)" style="width: 220px; height: 90px; font-size: 0.9em;"}
+
+`{python} min_le_2001`
+
+:::
+
+::: {.valuebox icon="heart" color="#1E90FF" title="Highest Life Expectancy(2024)" style="width: 220px; height: 90px; font-size: 0.9em;"}
+
+`{python} max_le_2024`
+
+:::
+
+::: {.valuebox icon="heart" color="#FF0000" title="Lowest Life Expectancy(2024)" style="width: 220px; height: 90px; font-size: 0.9em;"}
+
+`{python} min_le_2024`
+
+:::
+
+## Row 1 {height=80%}
+
+### Column {.tabset width="20%"}
+
+#### Map
+
+<div>
+  <iframe id="expectancy-map" src="expectancy_map.html" width="100%" height="600px" frameborder="0"></iframe>
+</div>
+
+### Column {.tabset width="20%"}
+
+#### Country Comparison
+
+<div>
+  <iframe id="expectancy-bar" src="expectancy_bar.html" width="100%" height="600px" frameborder="0"></iframe>
+</div>
+
+#### Country Trend
+
+<div>
+  <iframe id="expectancy-line" src="expectancy_line.html" width="100%" height="600px" frameborder="0"></iframe>
+</div>
+
+
+<script>
+  const refreshMap = {
+    "Child Mortality": ["mortality-map", "mortality-bar", "mortality-line"],
+    "Life Expectancy": ["expectancy-map", "expectancy-bar", "expectancy-line"],
+  };
+
+  document.querySelectorAll('.nav-link').forEach(function(tabLink) {
+    tabLink.addEventListener('click', function () {
+      const tabLabel = tabLink.textContent.trim();
+      if (refreshMap[tabLabel]) {
+        refreshMap[tabLabel].forEach(id => {
+          const iframe = document.getElementById(id);
+          if (iframe) iframe.src = iframe.src;
+        });
+      }
+    });
+  });
+</script>
+
+#### Data Download
+
+```{python}
+# Display full dataset with itables
+itables.show(asean_le, caption="ASEAN 21st Century Life Expectancy (GAPMINDER)", scrollY="600px", paging=True,buttons=["csvHtml5"])
+```

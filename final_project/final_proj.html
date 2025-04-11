@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="by Marlon Pius Pamplona">
+
+<title>GAPMINDER | Child Mortality and Life Expectancy | ASEAN in the 21st Century</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="final_proj_files/libs/clipboard/clipboard.min.js"></script>
+<script src="final_proj_files/libs/quarto-html/quarto.js"></script>
+<script src="final_proj_files/libs/quarto-html/popper.min.js"></script>
+<script src="final_proj_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="final_proj_files/libs/quarto-html/anchor.min.js"></script>
+<link href="final_proj_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="final_proj_files/libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="final_proj_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="final_proj_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="final_proj_files/libs/bootstrap/bootstrap-79290041bc69e8732989640fc837aee1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="final_proj_files/libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="final_proj_files/libs/quarto-dashboard/stickythead.js"></script>
+<script src="final_proj_files/libs/quarto-dashboard/datatables.min.js" kdttablesentinel="true"></script>
+<script src="final_proj_files/libs/quarto-dashboard/pdfmake.min.js" kdttablesentinel="true"></script>
+<script src="final_proj_files/libs/quarto-dashboard/vfs_fonts.js" kdttablesentinel="true"></script>
+<script src="final_proj_files/libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="final_proj_files/libs/quarto-dashboard/components.js"></script>
+<link href="final_proj_files/libs/quarto-dashboard/datatables.min.css" rel="stylesheet" kdttablesentinel="true">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="quarto-dashboard dashboard-fill fullcontent">
+
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">       
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">GAPMINDER | Child Mortality and Life Expectancy | ASEAN in the 21st Century</a></div>
+        
+        <div class="navbar-author">by Marlon Pius Pamplona</div>
+      </div>
+    </div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-home" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#home" data-scrolling="false" href="#home" aria-controls="home" aria-selected="true"><span class="nav-link-text">Home</span></a></li><li class="nav-item" role="presentation"><a id="tab-child-mortality" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#child-mortality" data-scrolling="false" href="#child-mortality" aria-controls="child-mortality" aria-selected="false"><span class="nav-link-text">Child Mortality</span></a></li><li class="nav-item" role="presentation"><a id="tab-life-expectancy" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#life-expectancy" data-scrolling="false" href="#life-expectancy" aria-controls="life-expectancy" aria-selected="false"><span class="nav-link-text">Life Expectancy</span></a></li></ul></div></div>
+</nav>
+</header>
+<div class="page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">  
+
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div id="home" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-home">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 50fr) minmax(3em, 50fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p>Child mortality refers to the number of deaths of children under the age of five per 1,000 live births in a given year. It is a critical indicator of a population’s health and the effectiveness of health systems, nutrition, sanitation, and access to medical care.</p>
+<p>Life expectancy, on the other hand, represents the average number of years a person is expected to live based on current mortality rates. Together, these two indicators offer important insights into the overall well-being and development progress of a region or country.</p>
+<p>The ASEAN (Association of Southeast Asian Nations) region consists of ten member states in Southeast Asia—Brunei, Cambodia, Indonesia, Laos, Malaysia, Myanmar, the Philippines, Singapore, Thailand, and Vietnam—each with diverse economic, social, and healthcare systems.</p>
+<p>ABOUT THE DATA</p>
+<p>This data was originally sourced from the Gapminder Foundation.</p>
+<p>The Gapminder Foundation is a non-profit venture that promotes sustainable global development and achievement of the United Nations Millennium Development Goals by increasing use and understanding of statistics and other information about social, economic, and environmental development.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<p><iframe id="mortality-bubble" src="mortality_bubble.html" width="100%" height="600px" frameborder="0"></iframe></p>
+</div>
+<p>From 2001 to 2024, the ASEAN region has seen a steady decline in child mortality rates and a significant improvement in life expectancy. These trends reflect advancements in maternal and child health services, expanded immunization programs, improved sanitation and water access, and greater investment in public health infrastructure.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+</div>
+<div id="child-mortality" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-child-mortality">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 20fr) minmax(3em, 80fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card valuebox html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #FF0000;">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-emoji-dizzy"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Highest Child Mortality(2001)
+</p>
+<p class="value-box-value">
+Lao
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #1E90FF;">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-emoji-dizzy"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Lowest Child Mortality(2001)
+</p>
+<p class="value-box-value">
+Singapore
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #FF0000;">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-emoji-dizzy"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Highest Child Mortality(2024)
+</p>
+<p class="value-box-value">
+Myanmar
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #1E90FF;">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-emoji-dizzy"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Lowest Child Mortality(2024)
+</p>
+<p class="value-box-value">
+Singapore
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card tabset html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header bslib-navs-card-title"><div class="card-title"><span style="display: inline">
+
+</span></div><ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-7"><li class="nav-item" role="presentation"><a href="#card-tabset-7-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Map" aria-selected="true" class="nav-link active">Map</a></li></ul></div>
+
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-7"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-7-1"><div class="card-body html-fill-item html-fill-container" data-title="Map">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<p><iframe id="mortality-map" src="mortality_map.html" width="100%" height="600px" frameborder="0"></iframe></p>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card tabset html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header bslib-navs-card-title"><div class="card-title"><span style="display: inline">
+
+</span></div><ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-9"><li class="nav-item" role="presentation"><a href="#card-tabset-9-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Country Comparison" aria-selected="true" class="nav-link active">Country Comparison</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-9-2" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Country Trend" aria-selected="false" class="nav-link">Country Trend</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-9-3" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Data Download" aria-selected="false" class="nav-link">Data Download</a></li></ul></div>
+
+
+
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-9"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-9-1"><div class="card-body html-fill-item html-fill-container" data-title="Country Comparison">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<p><iframe id="mortality-bar" src="mortality_bar.html" width="100%" height="600px" frameborder="0"></iframe></p>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-9-2"><div class="card-body html-fill-item html-fill-container" data-title="Country Trend">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<p><iframe id="mortality-line" src="mortality_line.html" width="100%" height="600px" frameborder="0"></iframe></p>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-9-3"><div class="card-body html-fill-item html-fill-container" data-title="Data Download">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<table id="itables_9332f8da_eb67_4fef_b2f8_b9e5e8f34b09" class="display nowrap compact" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<caption style="white-space: nowrap; overflow: hidden">ASEAN 21st Century Mortality (GAPMINDER)</caption><thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>year</th>
+      <th>child_mortality</th>
+    </tr>
+  </thead><tbody><tr>
+<td style="vertical-align:middle; text-align:left">
+<a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
+    <g style="fill:#d9d7fc">
+        <path d="M100,400H500V357H100Z"></path>
+        <path d="M100,300H400V257H100Z"></path>
+        <path d="M0,200H400V157H0Z"></path>
+        <path d="M100,100H500V57H100Z"></path>
+        <path d="M100,350H500V307H100Z"></path>
+        <path d="M100,250H400V207H100Z"></path>
+        <path d="M0,150H400V107H0Z"></path>
+        <path d="M100,50H500V7H100Z"></path>
+    </g>
+    <g style="fill:#1a1366;stroke:#1a1366;">
+   <rect x="100" y="7" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="0" y="107" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="207" width="300" height="43">
+    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="307" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
+  </rect>
+        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
+            <g transform="translate(45 50) rotate(-45)">
+                <circle r="33" cx="0" cy="0"></circle>
+                <rect x="-8" y="32" width="16" height="30"></rect>
+            </g>
+
+            <g transform="translate(450 152)">
+                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
+                <rect x="-15" y="-40" width="60" height="60"></rect>
+            </g>
+
+            <g transform="translate(50 352)">
+                <polygon points="-35,-5 0,-40 35,-5"></polygon>
+                <polygon points="-35,10 0,45 35,10"></polygon>
+            </g>
+
+            <g transform="translate(75 250)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+
+            <g transform="translate(425 250) rotate(180)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+Loading ITables v2.2.4 from the internet...
+(need <a href="https://mwouts.github.io/itables/troubleshooting.html">help</a>?)</td>
+</tr></tbody>
+</table>
+<link href="https://www.unpkg.com/dt_for_itables@2.0.13/dt_bundle.css" rel="stylesheet">
+<script type="module">
+    import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.0.13/dt_bundle.js';
+
+    document.querySelectorAll("#itables_9332f8da_eb67_4fef_b2f8_b9e5e8f34b09:not(.dataTable)").forEach(table => {
+        if (!(table instanceof HTMLTableElement))
+            return;
+
+        // Define the table data
+        const data = [[39622, "Brunei", 2001, 10.1], [39675, "Indonesia", 2001, 50.0], [39689, "Cambodia", 2001, 97.1], [39694, "Lao", 2001, 103.0], [39715, "Myanmar", 2001, 86.7], [39722, "Malaysia", 2001, 9.48], [39736, "Philippines", 2001, 37.1], [39751, "Singapore", 2001, 3.6], [39769, "Thailand", 2001, 20.8], [39772, "Timor-Leste", 2001, 103.0], [39787, "Vietnam", 2001, 28.6], [39819, "Brunei", 2002, 9.82], [39872, "Indonesia", 2002, 47.8], [39886, "Cambodia", 2002, 87.2], [39891, "Lao", 2002, 98.5], [39912, "Myanmar", 2002, 84.3], [39919, "Malaysia", 2002, 8.93], [39933, "Philippines", 2002, 36.4], [39948, "Singapore", 2002, 3.38], [39966, "Thailand", 2002, 19.8], [39969, "Timor-Leste", 2002, 97.3], [39984, "Vietnam", 2002, 27.5], [40016, "Brunei", 2003, 9.66], [40069, "Indonesia", 2003, 45.7], [40083, "Cambodia", 2003, 78.4], [40088, "Lao", 2003, 94.4], [40109, "Myanmar", 2003, 81.8], [40116, "Malaysia", 2003, 8.54], [40130, "Philippines", 2003, 35.7], [40145, "Singapore", 2003, 3.2], [40163, "Thailand", 2003, 18.8], [40166, "Timor-Leste", 2003, 92.0], [40181, "Vietnam", 2003, 26.6], [40213, "Brunei", 2004, 9.54], [40266, "Indonesia", 2004, 49.7], [40280, "Cambodia", 2004, 71.2], [40285, "Lao", 2004, 90.4], [40306, "Myanmar", 2004, 79.3], [40313, "Malaysia", 2004, 8.3], [40327, "Philippines", 2004, 35.0], [40342, "Singapore", 2004, 3.06], [40360, "Thailand", 2004, 17.9], [40363, "Timor-Leste", 2004, 86.8], [40378, "Vietnam", 2004, 25.8], [40410, "Brunei", 2005, 9.47], [40463, "Indonesia", 2005, 41.9], [40477, "Cambodia", 2005, 65.3], [40482, "Lao", 2005, 86.4], [40503, "Myanmar", 2005, 76.7], [40510, "Malaysia", 2005, 8.13], [40524, "Philippines", 2005, 34.4], [40539, "Singapore", 2005, 2.96], [40557, "Thailand", 2005, 17.0], [40560, "Timor-Leste", 2005, 81.8], [40575, "Vietnam", 2005, 25.1], [40607, "Brunei", 2006, 9.43], [40660, "Indonesia", 2006, 40.1], [40674, "Cambodia", 2006, 60.3], [40679, "Lao", 2006, 82.5], [40700, "Myanmar", 2006, 74.0], [40707, "Malaysia", 2006, 8.0], [40721, "Philippines", 2006, 33.8], [40736, "Singapore", 2006, 2.89], [40754, "Thailand", 2006, 16.2], [40757, "Timor-Leste", 2006, 76.9], [40772, "Vietnam", 2006, 24.5], [40804, "Brunei", 2007, 9.43], [40857, "Indonesia", 2007, 38.5], [40871, "Cambodia", 2007, 55.9], [40876, "Lao", 2007, 78.7], [40897, "Myanmar", 2007, 71.4], [40904, "Malaysia", 2007, 7.91], [40918, "Philippines", 2007, 33.3], [40933, "Singapore", 2007, 2.86], [40951, "Thailand", 2007, 15.4], [40954, "Timor-Leste", 2007, 72.5], [40969, "Vietnam", 2007, 24.1], [41001, "Brunei", 2008, 9.47], [41054, "Indonesia", 2008, 37.0], [41068, "Cambodia", 2008, 51.8], [41073, "Lao", 2008, 75.0], [41094, "Myanmar", 2008, 88.9], [41101, "Malaysia", 2008, 7.89], [41115, "Philippines", 2008, 32.8], [41130, "Singapore", 2008, 2.84], [41148, "Thailand", 2008, 14.7], [41151, "Timor-Leste", 2008, 68.5], [41166, "Vietnam", 2008, 23.7], [41198, "Brunei", 2009, 9.55], [41251, "Indonesia", 2009, 35.5], [41265, "Cambodia", 2009, 47.9], [41270, "Lao", 2009, 71.5], [41291, "Myanmar", 2009, 66.0], [41298, "Malaysia", 2009, 7.91], [41312, "Philippines", 2009, 32.4], [41327, "Singapore", 2009, 2.83], [41345, "Thailand", 2009, 14.0], [41348, "Timor-Leste", 2009, 65.2], [41363, "Vietnam", 2009, 23.4], [41395, "Brunei", 2010, 9.66], [41448, "Indonesia", 2010, 34.1], [41462, "Cambodia", 2010, 44.3], [41467, "Lao", 2010, 68.1], [41488, "Myanmar", 2010, 63.3], [41495, "Malaysia", 2010, 7.94], [41509, "Philippines", 2010, 32.0], [41524, "Singapore", 2010, 2.81], [41542, "Thailand", 2010, 13.3], [41545, "Timor-Leste", 2010, 62.3], [41560, "Vietnam", 2010, 23.1], [41592, "Brunei", 2011, 9.8], [41645, "Indonesia", 2011, 32.8], [41659, "Cambodia", 2011, 41.0], [41664, "Lao", 2011, 64.8], [41685, "Myanmar", 2011, 60.7], [41692, "Malaysia", 2011, 7.95], [41706, "Philippines", 2011, 31.6], [41721, "Singapore", 2011, 2.79], [41739, "Thailand", 2011, 12.7], [41742, "Timor-Leste", 2011, 59.6], [41757, "Vietnam", 2011, 22.8], [41789, "Brunei", 2012, 9.99], [41842, "Indonesia", 2012, 31.5], [41856, "Cambodia", 2012, 38.0], [41861, "Lao", 2012, 61.8], [41882, "Myanmar", 2012, 58.2], [41889, "Malaysia", 2012, 7.96], [41903, "Philippines", 2012, 31.2], [41918, "Singapore", 2012, 2.75], [41936, "Thailand", 2012, 12.1], [41939, "Timor-Leste", 2012, 57.2], [41954, "Vietnam", 2012, 22.6], [41986, "Brunei", 2013, 10.2], [42039, "Indonesia", 2013, 30.3], [42053, "Cambodia", 2013, 35.6], [42058, "Lao", 2013, 58.9], [42079, "Myanmar", 2013, 55.8], [42086, "Malaysia", 2013, 7.98], [42100, "Philippines", 2013, 30.9], [42115, "Singapore", 2013, 2.72], [42133, "Thailand", 2013, 11.5], [42136, "Timor-Leste", 2013, 54.9], [42151, "Vietnam", 2013, 22.3], [42183, "Brunei", 2014, 10.5], [42236, "Indonesia", 2014, 29.1], [42250, "Cambodia", 2014, 33.7], [42255, "Lao", 2014, 56.1], [42276, "Myanmar", 2014, 53.6], [42283, "Malaysia", 2014, 8.0], [42297, "Philippines", 2014, 30.5], [42312, "Singapore", 2014, 2.71], [42330, "Thailand", 2014, 11.0], [42333, "Timor-Leste", 2014, 52.8], [42348, "Vietnam", 2014, 22.1], [42380, "Brunei", 2015, 10.8], [42433, "Indonesia", 2015, 28.0], [42447, "Cambodia", 2015, 32.0], [42452, "Lao", 2015, 53.6], [42473, "Myanmar", 2015, 51.6], [42480, "Malaysia", 2015, 8.0], [42494, "Philippines", 2015, 30.1], [42509, "Singapore", 2015, 2.72], [42527, "Thailand", 2015, 10.5], [42530, "Timor-Leste", 2015, 51.0], [42545, "Vietnam", 2015, 21.8], [42577, "Brunei", 2016, 11.1], [42630, "Indonesia", 2016, 26.9], [42644, "Cambodia", 2016, 30.5], [42649, "Lao", 2016, 51.3], [42670, "Myanmar", 2016, 49.7], [42677, "Malaysia", 2016, 7.96], [42691, "Philippines", 2016, 29.7], [42706, "Singapore", 2016, 2.75], [42724, "Thailand", 2016, 9.98], [42727, "Timor-Leste", 2016, 49.2], [42742, "Vietnam", 2016, 21.5], [42774, "Brunei", 2017, 11.4], [42827, "Indonesia", 2017, 25.9], [42841, "Cambodia", 2017, 29.2], [42846, "Lao", 2017, 49.3], [42867, "Myanmar", 2017, 47.9], [42874, "Malaysia", 2017, 7.89], [42888, "Philippines", 2017, 29.1], [42903, "Singapore", 2017, 2.79], [42921, "Thailand", 2017, 9.52], [42924, "Timor-Leste", 2017, 47.5], [42939, "Vietnam", 2017, 21.1], [42971, "Brunei", 2018, 11.6], [43024, "Indonesia", 2018, 25.0], [43038, "Cambodia", 2018, 28.0], [43043, "Lao", 2018, 47.3], [43064, "Myanmar", 2018, 46.2], [43071, "Malaysia", 2018, 7.78], [43085, "Philippines", 2018, 28.4], [43100, "Singapore", 2018, 2.81], [43118, "Thailand", 2018, 9.1], [43121, "Timor-Leste", 2018, 45.8], [43136, "Vietnam", 2018, 20.7], [43168, "Brunei", 2019, 11.3], [43221, "Indonesia", 2019, 24.1], [43235, "Cambodia", 2019, 27.0], [43240, "Lao", 2019, 45.5], [43261, "Myanmar", 2019, 44.9], [43268, "Malaysia", 2019, 7.58], [43282, "Philippines", 2019, 27.8], [43297, "Singapore", 2019, 2.7], [43315, "Thailand", 2019, 8.77], [43318, "Timor-Leste", 2019, 44.2], [43333, "Vietnam", 2019, 20.4], [43365, "Brunei", 2020, 11.1], [43418, "Indonesia", 2020, 23.3], [43432, "Cambodia", 2020, 25.9], [43437, "Lao", 2020, 43.9], [43458, "Myanmar", 2020, 43.6], [43465, "Malaysia", 2020, 7.38], [43479, "Philippines", 2020, 27.2], [43494, "Singapore", 2020, 2.61], [43512, "Thailand", 2020, 8.49], [43515, "Timor-Leste", 2020, 42.7], [43530, "Vietnam", 2020, 20.0], [43562, "Brunei", 2021, 10.8], [43615, "Indonesia", 2021, 22.6], [43629, "Cambodia", 2021, 24.9], [43634, "Lao", 2021, 42.4], [43655, "Myanmar", 2021, 42.5], [43662, "Malaysia", 2021, 7.19], [43676, "Philippines", 2021, 26.6], [43691, "Singapore", 2021, 2.54], [43709, "Thailand", 2021, 8.25], [43712, "Timor-Leste", 2021, 41.3], [43727, "Vietnam", 2021, 19.7], [43759, "Brunei", 2022, 10.5], [43812, "Indonesia", 2022, 21.9], [43826, "Cambodia", 2022, 24.0], [43831, "Lao", 2022, 40.9], [43852, "Myanmar", 2022, 41.4], [43859, "Malaysia", 2022, 7.01], [43873, "Philippines", 2022, 26.0], [43888, "Singapore", 2022, 2.48], [43906, "Thailand", 2022, 8.04], [43909, "Timor-Leste", 2022, 40.0], [43924, "Vietnam", 2022, 19.4], [43956, "Brunei", 2023, 10.2], [44009, "Indonesia", 2023, 21.2], [44023, "Cambodia", 2023, 23.1], [44028, "Lao", 2023, 39.6], [44049, "Myanmar", 2023, 40.3], [44056, "Malaysia", 2023, 6.85], [44070, "Philippines", 2023, 25.5], [44085, "Singapore", 2023, 2.43], [44103, "Thailand", 2023, 7.85], [44106, "Timor-Leste", 2023, 38.8], [44121, "Vietnam", 2023, 19.0], [44153, "Brunei", 2024, 9.97], [44206, "Indonesia", 2024, 20.6], [44220, "Cambodia", 2024, 22.3], [44225, "Lao", 2024, 38.3], [44246, "Myanmar", 2024, 39.3], [44253, "Malaysia", 2024, 6.71], [44267, "Philippines", 2024, 25.0], [44282, "Singapore", 2024, 2.39], [44300, "Thailand", 2024, 7.67], [44303, "Timor-Leste", 2024, 37.6], [44318, "Vietnam", 2024, 18.6]];
+
+        // Define the dt_args
+        let dt_args = {"buttons": ["csvHtml5"], "autoWidth": false, "dom": "fiBrtlp", "info": true, "keys": true, "language": {"info": "Showing _TOTAL_ entries"}, "lengthChange": false, "order": [], "ordering": true, "paging": false, "responsive": true, "searching": true, "warn_on_selected_rows_not_rendered": true};
+        dt_args["data"] = data;
+
+        
+        new DataTable(table, dt_args);
+    });
+</script>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="life-expectancy" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-life-expectancy">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 20fr) minmax(3em, 80fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card valuebox html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #1E90FF;">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-heart"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Highest Life Expectancy(2001)
+</p>
+<p class="value-box-value">
+Singapore
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #FF0000;">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-heart"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Lowest Life Expectancy(2001)
+</p>
+<p class="value-box-value">
+Lao
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #1E90FF;">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-heart"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Highest Life Expectancy(2024)
+</p>
+<p class="value-box-value">
+Singapore
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #FF0000;">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-heart"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Lowest Life Expectancy(2024)
+</p>
+<p class="value-box-value">
+Lao
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card tabset html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header bslib-navs-card-title"><div class="card-title"><span style="display: inline">
+
+</span></div><ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-17"><li class="nav-item" role="presentation"><a href="#card-tabset-17-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Map" aria-selected="true" class="nav-link active">Map</a></li></ul></div>
+
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-17"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-17-1"><div class="card-body html-fill-item html-fill-container" data-title="Map">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<p><iframe id="expectancy-map" src="expectancy_map.html" width="100%" height="600px" frameborder="0"></iframe></p>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card tabset html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header bslib-navs-card-title"><div class="card-title"><span style="display: inline">
+
+</span></div><ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-19"><li class="nav-item" role="presentation"><a href="#card-tabset-19-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Country Comparison" aria-selected="true" class="nav-link active">Country Comparison</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-19-2" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Country Trend" aria-selected="false" class="nav-link">Country Trend</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-19-3" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Data Download" aria-selected="false" class="nav-link">Data Download</a></li></ul></div>
+
+
+
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-19"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-19-1"><div class="card-body html-fill-item html-fill-container" data-title="Country Comparison">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<p><iframe id="expectancy-bar" src="expectancy_bar.html" width="100%" height="600px" frameborder="0"></iframe></p>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-19-2"><div class="card-body html-fill-item html-fill-container" data-title="Country Trend">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container">
+<p><iframe id="expectancy-line" src="expectancy_line.html" width="100%" height="600px" frameborder="0"></iframe></p>
+</div>
+<script>
+  const refreshMap = {
+    "Child Mortality": ["mortality-map", "mortality-bar", "mortality-line"],
+    "Life Expectancy": ["expectancy-map", "expectancy-bar", "expectancy-line"],
+  };
+
+  document.querySelectorAll('.nav-link').forEach(function(tabLink) {
+    tabLink.addEventListener('click', function () {
+      const tabLabel = tabLink.textContent.trim();
+      if (refreshMap[tabLabel]) {
+        refreshMap[tabLabel].forEach(id => {
+          const iframe = document.getElementById(id);
+          if (iframe) iframe.src = iframe.src;
+        });
+      }
+    });
+  });
+</script>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-19-3"><div class="card-body html-fill-item html-fill-container" data-title="Data Download">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<table id="itables_a97cf173_19f3_489f_be2f_d3fa58184e8e" class="display nowrap compact" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<caption style="white-space: nowrap; overflow: hidden">ASEAN 21st Century Life Expectancy (GAPMINDER)</caption><thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>year</th>
+      <th>life_expectancy</th>
+    </tr>
+  </thead><tbody><tr>
+<td style="vertical-align:middle; text-align:left">
+<a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
+    <g style="fill:#d9d7fc">
+        <path d="M100,400H500V357H100Z"></path>
+        <path d="M100,300H400V257H100Z"></path>
+        <path d="M0,200H400V157H0Z"></path>
+        <path d="M100,100H500V57H100Z"></path>
+        <path d="M100,350H500V307H100Z"></path>
+        <path d="M100,250H400V207H100Z"></path>
+        <path d="M0,150H400V107H0Z"></path>
+        <path d="M100,50H500V7H100Z"></path>
+    </g>
+    <g style="fill:#1a1366;stroke:#1a1366;">
+   <rect x="100" y="7" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="0" y="107" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="207" width="300" height="43">
+    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="307" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
+  </rect>
+        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
+            <g transform="translate(45 50) rotate(-45)">
+                <circle r="33" cx="0" cy="0"></circle>
+                <rect x="-8" y="32" width="16" height="30"></rect>
+            </g>
+
+            <g transform="translate(450 152)">
+                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
+                <rect x="-15" y="-40" width="60" height="60"></rect>
+            </g>
+
+            <g transform="translate(50 352)">
+                <polygon points="-35,-5 0,-40 35,-5"></polygon>
+                <polygon points="-35,10 0,45 35,10"></polygon>
+            </g>
+
+            <g transform="translate(75 250)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+
+            <g transform="translate(425 250) rotate(180)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+Loading ITables v2.2.4 from the internet...
+(need <a href="https://mwouts.github.io/itables/troubleshooting.html">help</a>?)</td>
+</tr></tbody>
+</table>
+<link href="https://www.unpkg.com/dt_for_itables@2.0.13/dt_bundle.css" rel="stylesheet">
+<script type="module">
+    import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.0.13/dt_bundle.js';
+
+    document.querySelectorAll("#itables_a97cf173_19f3_489f_be2f_d3fa58184e8e:not(.dataTable)").forEach(table => {
+        if (!(table instanceof HTMLTableElement))
+            return;
+
+        // Define the table data
+        const data = [[39421, "Brunei", 2001, 72.8], [39473, "Indonesia", 2001, 67.5], [39487, "Cambodia", 2001, 60.9], [39492, "Lao", 2001, 59.0], [39513, "Myanmar", 2001, 59.4], [39520, "Malaysia", 2001, 73.3], [39534, "Philippines", 2001, 70.2], [39549, "Singapore", 2001, 79.8], [39567, "Thailand", 2001, 72.8], [39570, "Timor-Leste", 2001, 65.8], [39585, "Vietnam", 2001, 72.4], [39617, "Brunei", 2002, 72.9], [39669, "Indonesia", 2002, 67.7], [39683, "Cambodia", 2002, 61.5], [39688, "Lao", 2002, 59.7], [39709, "Myanmar", 2002, 59.8], [39716, "Malaysia", 2002, 73.5], [39730, "Philippines", 2002, 70.2], [39745, "Singapore", 2002, 80.1], [39763, "Thailand", 2002, 73.1], [39766, "Timor-Leste", 2002, 66.1], [39781, "Vietnam", 2002, 72.5], [39813, "Brunei", 2003, 72.9], [39865, "Indonesia", 2003, 67.8], [39879, "Cambodia", 2003, 62.2], [39884, "Lao", 2003, 60.4], [39905, "Myanmar", 2003, 60.3], [39912, "Malaysia", 2003, 73.5], [39926, "Philippines", 2003, 70.3], [39941, "Singapore", 2003, 80.4], [39959, "Thailand", 2003, 73.6], [39962, "Timor-Leste", 2003, 66.5], [39977, "Vietnam", 2003, 72.6], [40009, "Brunei", 2004, 72.9], [40061, "Indonesia", 2004, 66.3], [40075, "Cambodia", 2004, 62.9], [40080, "Lao", 2004, 61.1], [40101, "Myanmar", 2004, 60.8], [40108, "Malaysia", 2004, 73.8], [40122, "Philippines", 2004, 70.4], [40137, "Singapore", 2004, 80.7], [40155, "Thailand", 2004, 73.7], [40158, "Timor-Leste", 2004, 67.1], [40173, "Vietnam", 2004, 72.7], [40205, "Brunei", 2005, 73.0], [40257, "Indonesia", 2005, 68.3], [40271, "Cambodia", 2005, 63.7], [40276, "Lao", 2005, 61.7], [40297, "Myanmar", 2005, 61.4], [40304, "Malaysia", 2005, 74.1], [40318, "Philippines", 2005, 70.3], [40333, "Singapore", 2005, 81.3], [40351, "Thailand", 2005, 74.8], [40354, "Timor-Leste", 2005, 67.7], [40369, "Vietnam", 2005, 72.8], [40401, "Brunei", 2006, 73.2], [40453, "Indonesia", 2006, 68.4], [40467, "Cambodia", 2006, 64.5], [40472, "Lao", 2006, 62.3], [40493, "Myanmar", 2006, 62.0], [40500, "Malaysia", 2006, 74.4], [40514, "Philippines", 2006, 70.2], [40529, "Singapore", 2006, 81.6], [40547, "Thailand", 2006, 75.4], [40550, "Timor-Leste", 2006, 68.4], [40565, "Vietnam", 2006, 72.9], [40597, "Brunei", 2007, 73.5], [40649, "Indonesia", 2007, 68.7], [40663, "Cambodia", 2007, 65.2], [40668, "Lao", 2007, 62.9], [40689, "Myanmar", 2007, 62.6], [40696, "Malaysia", 2007, 74.5], [40710, "Philippines", 2007, 70.5], [40725, "Singapore", 2007, 81.8], [40743, "Thailand", 2007, 76.0], [40746, "Timor-Leste", 2007, 69.0], [40761, "Vietnam", 2007, 72.9], [40793, "Brunei", 2008, 73.8], [40845, "Indonesia", 2008, 68.9], [40859, "Cambodia", 2008, 65.9], [40864, "Lao", 2008, 63.6], [40885, "Myanmar", 2008, 57.7], [40892, "Malaysia", 2008, 74.3], [40906, "Philippines", 2008, 70.4], [40921, "Singapore", 2008, 82.1], [40939, "Thailand", 2008, 76.5], [40942, "Timor-Leste", 2008, 69.5], [40957, "Vietnam", 2008, 73.0], [40989, "Brunei", 2009, 73.8], [41041, "Indonesia", 2009, 69.1], [41055, "Cambodia", 2009, 66.5], [41060, "Lao", 2009, 64.2], [41081, "Myanmar", 2009, 64.0], [41088, "Malaysia", 2009, 74.2], [41102, "Philippines", 2009, 70.4], [41117, "Singapore", 2009, 82.5], [41135, "Thailand", 2009, 76.9], [41138, "Timor-Leste", 2009, 69.8], [41153, "Vietnam", 2009, 73.1], [41185, "Brunei", 2010, 73.8], [41237, "Indonesia", 2010, 69.3], [41251, "Cambodia", 2010, 66.9], [41256, "Lao", 2010, 64.9], [41277, "Myanmar", 2010, 64.8], [41284, "Malaysia", 2010, 74.4], [41298, "Philippines", 2010, 70.6], [41313, "Singapore", 2010, 82.8], [41331, "Thailand", 2010, 77.0], [41334, "Timor-Leste", 2010, 70.0], [41349, "Vietnam", 2010, 73.2], [41381, "Brunei", 2011, 73.9], [41433, "Indonesia", 2011, 69.6], [41447, "Cambodia", 2011, 67.4], [41452, "Lao", 2011, 65.6], [41473, "Myanmar", 2011, 65.4], [41480, "Malaysia", 2011, 74.6], [41494, "Philippines", 2011, 70.7], [41509, "Singapore", 2011, 83.1], [41527, "Thailand", 2011, 77.4], [41530, "Timor-Leste", 2011, 70.2], [41545, "Vietnam", 2011, 73.3], [41577, "Brunei", 2012, 74.0], [41629, "Indonesia", 2012, 69.8], [41643, "Cambodia", 2012, 67.9], [41648, "Lao", 2012, 66.2], [41669, "Myanmar", 2012, 66.1], [41676, "Malaysia", 2012, 74.8], [41690, "Philippines", 2012, 70.7], [41705, "Singapore", 2012, 83.3], [41723, "Thailand", 2012, 77.7], [41726, "Timor-Leste", 2012, 70.3], [41741, "Vietnam", 2012, 73.5], [41773, "Brunei", 2013, 73.9], [41825, "Indonesia", 2013, 70.0], [41839, "Cambodia", 2013, 68.2], [41844, "Lao", 2013, 66.7], [41865, "Myanmar", 2013, 66.7], [41872, "Malaysia", 2013, 75.3], [41886, "Philippines", 2013, 70.6], [41901, "Singapore", 2013, 83.5], [41919, "Thailand", 2013, 78.0], [41922, "Timor-Leste", 2013, 70.4], [41937, "Vietnam", 2013, 73.6], [41969, "Brunei", 2014, 74.0], [42021, "Indonesia", 2014, 70.2], [42035, "Cambodia", 2014, 68.6], [42040, "Lao", 2014, 67.2], [42061, "Myanmar", 2014, 67.3], [42068, "Malaysia", 2014, 75.1], [42082, "Philippines", 2014, 71.0], [42097, "Singapore", 2014, 83.8], [42115, "Thailand", 2014, 78.1], [42118, "Timor-Leste", 2014, 70.3], [42133, "Vietnam", 2014, 73.7], [42165, "Brunei", 2015, 74.0], [42217, "Indonesia", 2015, 70.4], [42231, "Cambodia", 2015, 68.9], [42236, "Lao", 2015, 67.6], [42257, "Myanmar", 2015, 67.7], [42264, "Malaysia", 2015, 75.0], [42278, "Philippines", 2015, 70.9], [42293, "Singapore", 2015, 84.1], [42311, "Thailand", 2015, 78.2], [42314, "Timor-Leste", 2015, 70.3], [42329, "Vietnam", 2015, 73.9], [42361, "Brunei", 2016, 74.1], [42413, "Indonesia", 2016, 70.7], [42427, "Cambodia", 2016, 69.2], [42432, "Lao", 2016, 68.0], [42453, "Myanmar", 2016, 68.2], [42460, "Malaysia", 2016, 75.0], [42474, "Philippines", 2016, 71.0], [42489, "Singapore", 2016, 84.4], [42507, "Thailand", 2016, 78.0], [42510, "Timor-Leste", 2016, 70.4], [42525, "Vietnam", 2016, 74.0], [42557, "Brunei", 2017, 74.1], [42609, "Indonesia", 2017, 70.9], [42623, "Cambodia", 2017, 69.4], [42628, "Lao", 2017, 68.4], [42649, "Myanmar", 2017, 68.3], [42656, "Malaysia", 2017, 75.1], [42670, "Philippines", 2017, 71.2], [42685, "Singapore", 2017, 84.7], [42703, "Thailand", 2017, 78.2], [42706, "Timor-Leste", 2017, 70.5], [42721, "Vietnam", 2017, 74.2], [42753, "Brunei", 2018, 74.2], [42805, "Indonesia", 2018, 71.1], [42819, "Cambodia", 2018, 69.7], [42824, "Lao", 2018, 68.6], [42845, "Myanmar", 2018, 69.1], [42852, "Malaysia", 2018, 75.2], [42866, "Philippines", 2018, 71.6], [42881, "Singapore", 2018, 84.7], [42899, "Thailand", 2018, 78.3], [42902, "Timor-Leste", 2018, 70.5], [42917, "Vietnam", 2018, 74.3], [42949, "Brunei", 2019, 74.4], [43001, "Indonesia", 2019, 71.4], [43015, "Cambodia", 2019, 69.9], [43020, "Lao", 2019, 69.0], [43041, "Myanmar", 2019, 69.5], [43048, "Malaysia", 2019, 75.0], [43062, "Philippines", 2019, 71.8], [43077, "Singapore", 2019, 84.8], [43095, "Thailand", 2019, 78.4], [43098, "Timor-Leste", 2019, 70.6], [43113, "Vietnam", 2019, 74.5], [43145, "Brunei", 2020, 74.4], [43197, "Indonesia", 2020, 69.7], [43211, "Cambodia", 2020, 69.6], [43216, "Lao", 2020, 69.3], [43237, "Myanmar", 2020, 69.7], [43244, "Malaysia", 2020, 75.2], [43258, "Philippines", 2020, 72.1], [43273, "Singapore", 2020, 83.9], [43291, "Thailand", 2020, 78.7], [43294, "Timor-Leste", 2020, 70.8], [43309, "Vietnam", 2020, 75.8], [43341, "Brunei", 2021, 74.3], [43393, "Indonesia", 2021, 68.4], [43407, "Cambodia", 2021, 68.8], [43412, "Lao", 2021, 68.9], [43433, "Myanmar", 2021, 68.5], [43440, "Malaysia", 2021, 74.2], [43454, "Philippines", 2021, 69.2], [43469, "Singapore", 2021, 83.8], [43487, "Thailand", 2021, 78.2], [43490, "Timor-Leste", 2021, 70.1], [43505, "Vietnam", 2021, 74.0], [43537, "Brunei", 2022, 74.2], [43589, "Indonesia", 2022, 69.1], [43603, "Cambodia", 2022, 69.1], [43608, "Lao", 2022, 69.8], [43629, "Myanmar", 2022, 70.1], [43636, "Malaysia", 2022, 75.5], [43650, "Philippines", 2022, 72.2], [43665, "Singapore", 2022, 85.2], [43683, "Thailand", 2022, 79.1], [43686, "Timor-Leste", 2022, 71.4], [43701, "Vietnam", 2022, 75.0], [43733, "Brunei", 2023, 74.2], [43785, "Indonesia", 2023, 72.0], [43799, "Cambodia", 2023, 70.7], [43804, "Lao", 2023, 70.1], [43825, "Myanmar", 2023, 70.3], [43832, "Malaysia", 2023, 75.7], [43846, "Philippines", 2023, 72.3], [43861, "Singapore", 2023, 85.4], [43879, "Thailand", 2023, 79.3], [43882, "Timor-Leste", 2023, 71.7], [43897, "Vietnam", 2023, 75.1], [43929, "Brunei", 2024, 74.2], [43981, "Indonesia", 2024, 72.1], [43995, "Cambodia", 2024, 70.8], [44000, "Lao", 2024, 70.4], [44021, "Myanmar", 2024, 70.6], [44028, "Malaysia", 2024, 75.9], [44042, "Philippines", 2024, 72.4], [44057, "Singapore", 2024, 85.5], [44075, "Thailand", 2024, 79.6], [44078, "Timor-Leste", 2024, 71.9], [44093, "Vietnam", 2024, 75.3]];
+
+        // Define the dt_args
+        let dt_args = {"scrollY": "600px", "paging": true, "buttons": ["csvHtml5"], "autoWidth": false, "dom": "fiBrtlp", "info": true, "keys": true, "language": {"info": "Showing _TOTAL_ entries"}, "lengthChange": false, "order": [], "ordering": true, "responsive": true, "searching": true, "warn_on_selected_rows_not_rendered": true};
+        dt_args["data"] = data;
+
+        
+        new DataTable(table, dt_args);
+    });
+</script>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+
+</div>
+</div>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /container fluid -->
+
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
+
+
+
+</body></html>
